@@ -1,25 +1,25 @@
 
 
-DROP TABLE IF EXISTS employees;
-DROP TABLE IF EXISTS roles;
-DROP TABLE IF EXISTS departments;
-DROP TABLE IF EXISTS managers;
+DROP DATABASE IF EXISTS employees;
+CREATE DATABASE employees;
+
+USE employees;
 
 CREATE TABLE managers (
-    id INTEGER PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL
 );
 
 
 CREATE TABLE departments (
-    id INTEGER PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
 
 
 CREATE TABLE roles (
-    id INTEGER PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(50) NOT NULL,
     salary INTEGER UNSIGNED NOT NULL,
     department_id INTEGER,
@@ -28,7 +28,7 @@ CREATE TABLE roles (
 
 
 CREATE TABLE employees (
-    id INTEGER PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_id INTEGER,
