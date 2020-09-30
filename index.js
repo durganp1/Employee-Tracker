@@ -1,7 +1,27 @@
 
 
 const { prompt } = require('inquirer');
-const db = require('./db');
+//const db = require('./db');
+const logo = require('asciiart-logo');
+
+begin();
+
+function begin() {
+console.log(
+    logo({
+        name: 'Employee Tracker',
+        font: 'DOS Rebel',
+        lineChars: 10,
+        padding: 2,
+        margin: 3,
+    })
+    .emptyLine()
+    .render()
+);
+
+openingPrompts();
+
+}
 
 function openingPrompts() {
     prompt ([
