@@ -114,3 +114,13 @@ function viewDepartments() {
     .catch(console.log)
     .then(() => openingPrompts());
 }
+
+//VIEW ALL ROLES
+function viewRoles() {
+    db.findAllRoles()
+    .then(([rows]) => {
+        console.table(rows);
+    })
+    .catch(console.log)
+    .then(() => openingPrompts());
+}

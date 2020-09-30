@@ -19,6 +19,12 @@ class dataBase {
         );
     }
 
+    findAllRoles() {
+        return this.connect.promise().query(
+            "SELECT roles.title AS 'Job Title', roles.id, roles.salary, departments.name AS 'Department Name' FROM roles JOIN departments ON roles.department_id = departments.id;"
+        );
+    }
+
 
 
 
