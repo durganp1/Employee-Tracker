@@ -104,3 +104,13 @@ function viewEmployees() {
     .catch(console.log)
     .then(() => openingPrompts());
 }
+
+// VIEW ALL DEPARTMENTS
+function viewDepartments() {
+    db.findAllDepartments()
+    .then(([rows]) => {
+        console.table(rows);
+    })
+    .catch(console.log)
+    .then(() => openingPrompts());
+}

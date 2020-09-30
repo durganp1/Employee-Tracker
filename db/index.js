@@ -13,6 +13,12 @@ class dataBase {
         );
     }
 
+    findAllDepartments() {
+        return this.connect.promise().query(
+            "SELECT * FROM departments;"
+        );
+    }
+
 
 
 
