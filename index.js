@@ -145,3 +145,40 @@ function addDepartment() {
         .then(() => openingPrompts());
     })
 }
+
+function addRole() {
+    db.findAllDepartments()
+    .then(([rows]) => {
+        let departments = rows;
+        const allDepartments = departments.map(({ id, name }) => ({
+            name: name,
+            value: id
+        }));
+   
+    prompt([
+        {
+            name: 'title',
+            message: 'What is the title of the new role?'
+        },
+        {
+            name: 'salary',
+            message: 'What is the salary of the new role?'
+        },
+        {
+            type: 'list',
+            name: 'department_id',
+            choices: allDepartments
+        }
+        ])
+        .then(role => {
+            db.createRole(role)
+            .then(() => console.log(`Added ${role.title} to the database.`))
+            db.findAllRoles()
+            .then (([rows]) => {
+                console.table(rows)
+            })
+            .catch(console.log)
+            .then(() => openingPrompts());
+        })
+    })
+}

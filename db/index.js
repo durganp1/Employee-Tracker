@@ -29,7 +29,9 @@ class dataBase {
         return this.connect.promise().query("INSERT INTO departments SET ?", name);
     }
 
-
+    createRole(role) {
+        return this.connect.promise().query("INSERT INTO roles SET ?", role); 
+    }
 
 
 
