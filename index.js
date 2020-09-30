@@ -1,8 +1,9 @@
 
 
 const { prompt } = require('inquirer');
-//const db = require('./db');
+const db = require('./db');
 const logo = require('asciiart-logo');
+require('console.table');
 
 begin();
 
@@ -92,4 +93,14 @@ function openingPrompts() {
                 exit();
         }
     })
+}
+
+//VIEW ALL EMPLOYEES
+function viewEmployees() {
+    db.findAllEmployees()
+    .then(([rows]) => {
+        console.table(rows);
+    })
+    .catch(console.log)
+    .then(() => openingPrompts());
 }
