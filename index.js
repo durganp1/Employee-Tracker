@@ -115,7 +115,7 @@ function viewDepartments() {
     .then(() => openingPrompts());
 }
 
-//VIEW ALL ROLES
+// VIEW ALL ROLES
 function viewRoles() {
     db.findAllRoles()
     .then(([rows]) => {
@@ -123,4 +123,25 @@ function viewRoles() {
     })
     .catch(console.log)
     .then(() => openingPrompts());
+}
+
+// ADD A DEPARTMENT
+function addDepartment() {
+    prompt([
+        {
+            name: 'name',
+            message: 'What would you like to name the department?'
+        }
+    ])
+    .then(res => {
+        let name = res;
+        db.createDepartment(name)
+        .then(() => console.log(`Added ${name.name} to the database`))
+        db.findAllDepartments()
+        .then(([rows]) => {
+            console.table(rows);
+        })
+        .catch(console.log)
+        .then(() => openingPrompts());
+    })
 }

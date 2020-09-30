@@ -25,6 +25,10 @@ class dataBase {
         );
     }
 
+    createDepartment(name) {
+        return this.connect.promise().query("INSERT INTO departments SET ?", name);
+    }
+
 
 
 
