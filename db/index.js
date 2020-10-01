@@ -19,9 +19,21 @@ class dataBase {
         );
     }
 
+    findAllManagers() {
+        return this.connect.promise().query(
+            "SELECT * FROM managers;"
+        );
+    }
+
     findAllRoles() {
         return this.connect.promise().query(
             "SELECT roles.title AS 'Job Title', roles.id, roles.salary, departments.name AS 'Department Name' FROM roles JOIN departments ON roles.department_id = departments.id;"
+        );
+    }
+
+    findJustRoles() {
+        return this.connect.promise().query(
+            "SELECT * FROM roles;"
         );
     }
 
@@ -31,6 +43,10 @@ class dataBase {
 
     createRole(role) {
         return this.connect.promise().query("INSERT INTO roles SET ?", role); 
+    }
+
+    createEmployee(newEmployee) {
+        return this.connect.promise().query("INSERT INTO employees SET ?", newEmployee);
     }
 
 

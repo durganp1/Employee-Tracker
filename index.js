@@ -167,6 +167,7 @@ function addRole() {
         {
             type: 'list',
             name: 'department_id',
+            message: 'What department does the new role belong in?',
             choices: allDepartments
         }
         ])
@@ -182,3 +183,62 @@ function addRole() {
         })
     })
 }
+
+function addEmployee() {
+    db.findJustRoles()
+    .then(([rows]) => {
+        let roles = rows;
+        const allRoles = roles.map(({ id, title }) => ({
+            name: title,
+            value: id
+        }));
+    db.findAllManagers()
+    .then(([data]) => {
+        let managers = data;
+        const allManagers = managers.map(({ id, first_name }) => ({
+            name: first_name,
+            value: id
+        }));
+    prompt([
+        {
+            name: 'first_name',
+            message: 'What is the employees first name?'
+        },
+        {
+            name: 'last_name',
+            message: 'What is the employees last name?'
+        },
+        {
+            type: 'list',
+            name: 'role_id',
+            message: 'What is the new employees role?',
+            choices: allRoles
+        },
+        {
+            type: 'list',
+            name: 'manager_id',
+            message: 'What manager is the employee to report to?',
+            choices: allManagers
+        }
+    ])
+    .then(res => {
+        let newEmployee = {
+        first_name: res.first_name,
+        last_name: res.last_name,
+        role_id: res.role_id,
+        manager_id: res.manager_id
+        }
+
+        db.createEmployee(newEmployee)
+        .then(() => console.log(`Added ${first_name} to the database.`))
+        db.findAllEmployees()
+        .then(([rows]) => {
+            console.table(rows)
+        })
+        .catch(console.log)
+        .then(() => openingPrompts());
+        })
+    })
+    })
+}
+
