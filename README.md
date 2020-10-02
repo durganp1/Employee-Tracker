@@ -17,6 +17,10 @@ Employee-Tracker is a CLI based tool that can be used to create and maintain a d
 
 ## Installation
 
+[Installation Video](https://drive.google.com/file/d/1eRIL89L7v71FCHf_NDf4NeruX8TpGoqz/view)
+
+Navigate to https://github.com/durganp1/Employee-Tracker
+
 1. Download zip file or clone from https://github.com/durganp1/Employee-Tracker
 2. Open in text editor of choice (VSCode was used for the development)
 3. Open connection.js file and input your mysql username and password
