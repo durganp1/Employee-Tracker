@@ -230,7 +230,7 @@ function addEmployee() {
         }
 
         db.createEmployee(newEmployee)
-        .then(() => console.log(`Added ${first_name} to the database.`))
+        .then(() => console.log(`Added ${newEmployee.first_name} to the database.`))
         db.findAllEmployees()
         .then(([rows]) => {
             console.table(rows)
@@ -241,4 +241,45 @@ function addEmployee() {
     })
     })
 }
+
+function updateRole() {
+    db.findJustRoles()
+    .then(([rows]) => {
+        let roles = rows;
+        const allRoles = roles.map(({ id, title }) => ({
+            name: title,
+            value: id
+        }));
+    db.findAllEmployees()
+    .then(([data]) => {
+        let employees = data;
+        const allEmployees = employees.map(({ id, first_name, last_name }) => ({
+            name: (first_name.concat(' ', last_name)),
+            value: id
+        }));
+    prompt([
+        {
+            type: 'list',
+            name: 'employee_id',
+            message: 'Which employee would you like to change?',
+            choices: allEmployees
+        },
+        {
+            type: 'list',
+            name: 'role_id',
+            message: 'What role would you like for them to have?',
+            choices: allRoles
+        }
+    ])
+    .then(res => db.updateRole(res.role_id, res.employee_id))
+    .catch(err=> console.log(err.message))
+       .then(() => openingPrompts());
+    })
+    })
+}
+
+function exit() {
+    process.exit();
+}
+
 

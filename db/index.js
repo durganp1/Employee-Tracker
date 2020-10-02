@@ -49,6 +49,11 @@ class dataBase {
         return this.connect.promise().query("INSERT INTO employees SET ?", newEmployee);
     }
 
+    updateRole(role_id, employee_id) {
+        return this.connect.promise().query("UPDATE employees SET role_id = ? WHERE id = ?", [role_id, employee_id]);
+    }
+
+    
 
 
 
